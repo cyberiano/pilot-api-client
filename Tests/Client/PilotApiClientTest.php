@@ -4,8 +4,8 @@
  *
  * @author Cristian Jimenez <cristian@zephia.com.ar>
  */
-namespace Zephia\piloApiClient\Client\Tests\Client;
-use Zephia\piloApiClient\Client\PilotApiClient;
+namespace Zephia\PilotApiClient\Client\Tests\Client;
+use Zephia\PilotApiClient\Client\PilotApiClient;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Handler\MockHandler;

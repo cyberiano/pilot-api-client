@@ -23,6 +23,9 @@ $config = [
 $client = new Zephia\PilotApiClient\Client\PilotApiClient($config);
 
 $lead_data = new \Zephia\PilotApiClient\Model\LeadData([
+    'contact_type_id' => 1,
+    'business_type_id' => 1,
+    'suborigin_id' => "FFFF0000",
     'firstname' => 'John',
     'lastname' => 'Doe',
     'phone' => '+543512345678',

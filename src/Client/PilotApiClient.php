@@ -12,7 +12,7 @@ use GuzzleHttp\Client as GuzzleClient;
 class PilotApiClient
 {
     /**
-     * Pilot API URL
+     * Pilot API URI
      */
     const BASE_URI = 'http://www.pilotsolution.com.ar/api/webhooks/welcome.php';
 
@@ -44,7 +44,7 @@ class PilotApiClient
     /**
      * Store lead
      *
-     * @param $lead_data Lead data array.
+     * @param array $lead_data Lead data array.
      * See documentation on http://www.pilotsolution.com.ar/home/api.php (Array keys without 'pilot_' prefix)
      * Example:
      * $lead_data = ['firstname' => 'John', 'lastname' = 'Doe', 'phone' => '+543512345678'];

@@ -25,7 +25,8 @@ $client = new Zephia\PilotApiClient\PilotApiClient($config);
 $lead_data = [
     'firstname' => 'John',
     'lastname' = 'Doe',
-    'phone' => '+543512345678'
+    'phone' => '+543512345678',
+    'email' => 'john.doe@domain.com'
 ];
 $business_type_id = 1;
 $contact_type_id = 1;

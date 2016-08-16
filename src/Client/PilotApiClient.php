@@ -47,7 +47,7 @@ class PilotApiClient
      * @param array $lead_data Lead data array.
      * See documentation on http://www.pilotsolution.com.ar/home/api.php (Array keys without 'pilot_' prefix)
      * Example:
-     * $lead_data = ['firstname' => 'John', 'lastname' = 'Doe', 'phone' => '+543512345678'];
+     * $lead_data = ['firstname' => 'John', 'lastname' = 'Doe', 'phone' => '+543512345678', 'email' => 'john.doe@domain.com'];
      *
      * @param int $business_type_id Código numérico del tipo negocio del dato (1: 0km, 2: Usados, 3: Plan de Ahorro)
      * @param int $contact_type_id Código numérico del tipo de contacto del dato (1: Electrónico, 2: Telefónico , 3: Entrevista)

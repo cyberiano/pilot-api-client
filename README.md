@@ -1,5 +1,10 @@
 # Pilot API Client
 
+[![Build Status](https://travis-ci.org/zephia/pilot-api-client.svg?branch=master)](https://travis-ci.org/zephia/pilot-api-client)
+[![Code Coverage](https://scrutinizer-ci.com/g/zephia/pilot-api-client/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/zephia/pilot-api-client/?branch=master)
+[![Build Status](https://scrutinizer-ci.com/g/zephia/pilot-api-client/badges/build.png?b=master)](https://scrutinizer-ci.com/g/zephia/pilot-api-client/build-status/master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/zephia/pilot-api-client/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/zephia/pilot-api-client/?branch=master)
+
 A PHP Pilot CRM API Client
 
 ## Installation

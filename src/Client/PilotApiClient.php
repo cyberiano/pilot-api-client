@@ -20,7 +20,6 @@ class PilotApiClient
 
     private $appKey;
     private $debug;
-    private $notification_email;
     private $guzzleClient;
 
     /**
@@ -34,7 +33,7 @@ class PilotApiClient
             'app_key' => null,
         ];
 
-        $config = array_merge($config, $defaults);
+        $config = array_merge($defaults, $config);
 
         $this->appKey = $config['app_key'];
         $this->debug = $config['debug'];
@@ -60,12 +59,6 @@ class PilotApiClient
             throw new InvalidArgumentException("Lead Data is empty.");
         }
 
-        /*$pilot_lead_data = [];
-
-        foreach ($lead_data as $key => $value) {
-            $pilot_lead_data['pilot_' . $key] = $value;
-        }*/
-
         $form_params = [
             'debug' => $this->debug,
             'action' => 'create',
@@ -82,12 +75,19 @@ class PilotApiClient
             'body' => $form_params
         ]);
 
-        if ($response->getStatusCode() != 200) {
-            throw new \InvalidArgumentException(
+        if ($response->getStatusCode() !== 200) {
+            throw new InvalidArgumentException(
                 $response->getBody()->getContents()
             );
         } else {
-            return $response->getBody()->getContents();
+            // TODO: Delete this match when the API is fixed.
+            $pattern = '/\{(?:[^{}]|(?R))*\}/x';
+            preg_match_all($pattern, $response->getBody()->getContents(), $matches);
+            $content = json_decode($matches[0][0]);
+            if ($content->success === false) {
+                throw new InvalidArgumentException($content->data);
+            }
+            return $content;
         }
     }
 

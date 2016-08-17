@@ -6,13 +6,6 @@ use Zephia\PilotApiClient\Exception\InvalidArgumentException;
 
 class LeadData
 {
-    const REQUIRED_VALUES = [
-        'firstname',
-        'contact_type_id',
-        'business_type_id',
-        'suborigin_id',
-    ];
-
     private $firstname;
     private $lastname;
     private $phone;
@@ -42,7 +35,14 @@ class LeadData
      */
     public function __construct($data = [])
     {
-        $missing = array_diff_key(array_flip(self::REQUIRED_VALUES), $data);
+        $required_values = [
+            'firstname',
+            'phone',
+            'contact_type_id',
+            'business_type_id',
+            'suborigin_id',
+        ];
+        $missing = array_diff_key(array_flip($required_values), $data);
         if (count($missing) > 0) {
             throw new InvalidArgumentException(
                 'Missing required value: ' . array_keys($missing)[0] . '.'

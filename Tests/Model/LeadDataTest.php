@@ -23,6 +23,7 @@ class LeadDataTest extends \PHPUnit_Framework_TestCase
     {
         $lead_data = new LeadData([
             'firstname' => 'Test',
+            'phone' => '123456',
             'contact_type_id' => 1,
             'business_type_id' => 1,
             'suborigin_id' => "FFFF0000",
@@ -38,9 +39,10 @@ class LeadDataTest extends \PHPUnit_Framework_TestCase
     {
         return [
             [[], 'firstname'],
-            [['firstname' => 'Test'], 'contact_type_id'],
-            [['firstname' => 'Test', 'contact_type_id' => 1], 'business_type_id'],
-            [['firstname' => 'Test', 'contact_type_id' => 1, 'business_type_id' => 1], 'suborigin_id'],
+            [['firstname' => 'Test'], 'phone'],
+            [['firstname' => 'Test', 'phone' => '123456'], 'contact_type_id'],
+            [['firstname' => 'Test', 'phone' => '123456', 'contact_type_id' => 1], 'business_type_id'],
+            [['firstname' => 'Test', 'phone' => '123456', 'contact_type_id' => 1, 'business_type_id' => 1], 'suborigin_id'],
         ];
     }
 }

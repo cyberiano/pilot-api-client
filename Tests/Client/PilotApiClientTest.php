@@ -6,18 +6,14 @@
  */
 namespace Zephia\PilotApiClient\Tests\Client;
 
-use GuzzleHttp\Stream\Stream;
-use Zephia\PilotApiClient\Client\PilotApiClient;
 use GuzzleHttp\Client;
-use GuzzleHttp\Subscriber\Mock;
 use GuzzleHttp\Message\Response;
+use GuzzleHttp\Stream\Stream;
+use GuzzleHttp\Subscriber\Mock;
+use Zephia\PilotApiClient\Client\PilotApiClient;
 use Zephia\PilotApiClient\Exception\InvalidArgumentException;
 use Zephia\PilotApiClient\Model\LeadData;
 
-/**
- * Class NominatimClientTest
- * @package MauroMoreno\Client\Tests\Client
- */
 class PilotApiClientTest extends \PHPUnit_Framework_TestCase
 {
     /**
@@ -46,7 +42,7 @@ class PilotApiClientTest extends \PHPUnit_Framework_TestCase
         $client = new PilotApiClient([
             'debug' => true
         ]);
-        $mock = new Mock([new Response(200, [], Stream::factory('Error capturado: Missing argument 5 for logCall(), called in C:\Inetpub\vhosts\dragon686.startdedicated.com\httpdocs\api\webhooks\welcome.php on line 141 and defined<br />Error capturado: Undefined variable: ipcliente<br />{"success":false,"message":"Error","data":"No se indico el parametro requerido appKey"}'))]);
+        $mock = new Mock([new Response(200, [], Stream::factory('{"success":false,"message":"Error","data":"No se indico el parametro requerido appKey"}'))]);
         $client->getGuzzleClient()->getEmitter()->attach($mock);
         $client->storeLead(new LeadData([
             'firstname' => 'Test',
@@ -66,7 +62,7 @@ class PilotApiClientTest extends \PHPUnit_Framework_TestCase
             'debug' => true,
             'app_key' => 'APP-WRONG-KEY'
         ]);
-        $mock = new Mock([new Response(200, [], Stream::factory('Error capturado: Missing argument 5 for logCall(), called in C:\Inetpub\vhosts\dragon686.startdedicated.com\httpdocs\api\webhooks\welcome.php on line 141 and defined<br />Error capturado: Undefined variable: ipcliente<br />{"success":false,"message":"Error","data":"No se encontro la key APP-WRONG-KEY"}'))]);
+        $mock = new Mock([new Response(200, [], Stream::factory('{"success":false,"message":"Error","data":"No se encontro la key APP-WRONG-KEY"}'))]);
         $client->getGuzzleClient()->getEmitter()->attach($mock);
         $client->storeLead(new LeadData([
             'firstname' => 'Test',
@@ -86,7 +82,7 @@ class PilotApiClientTest extends \PHPUnit_Framework_TestCase
             'debug' => true,
             'app_key' => 'APP-KEY'
         ]);
-        $mock = new Mock([new Response(200, [], Stream::factory('Error capturado: Missing argument 5 for logCall(), called in C:\Inetpub\vhosts\dragon686.startdedicated.com\httpdocs\api\webhooks\welcome.php on line 141 and defined<br />Error capturado: Undefined variable: ipcliente<br />{"success":false,"message":"Error","data":"(3.0) El codigo de origen del dato FFFF0000no existe."}'))]);
+        $mock = new Mock([new Response(200, [], Stream::factory('{"success":false,"message":"Error","data":"(3.0) El codigo de origen del dato FFFF0000no existe."}'))]);
         $client->getGuzzleClient()->getEmitter()->attach($mock);
         $client->storeLead(new LeadData([
             'firstname' => 'Test',

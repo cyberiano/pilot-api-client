@@ -37,7 +37,17 @@ $lead_data = new \Zephia\PilotApiClient\Model\LeadData([
     'email' => 'john.doe@domain.com'
 ]);
 
+// or programatically
+$lead_data = (new \Zephia\PilotApiClient\Model\LeadData())
+    ->setContactTypeId(1)
+    ->setBusinessTypeId(1)
+    ->setSuboriginId("FFFF0000")
+    ->setFirstname("John")
+    ->setLastname("Doe")
+    ->setPhone("+543512345678")
+    ->setEmail("john.doe@domain.com");
+
 $client->storeLead($lead_data);
 
-// Returns API response.
+// Returns API response object.
 ```

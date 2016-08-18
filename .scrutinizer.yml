@@ -8,10 +8,10 @@ build:
     tests:
         override:
             -
-                command: 'phpunit --coverage-clover=~/build/logs/clover.xml'
+                command: 'phpunit --coverage-clover=build/logs/clover.xml'
                 coverage:
-                    file: '~/build/logs/clover.xml'
-                    format: 'php-clover'
+                    file: 'build/logs/clover.xml'
+                    format: 'clover'
 filter:
     excluded_paths:
         - Tests/*

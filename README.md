@@ -2,6 +2,7 @@
 
 [![Build Status](https://scrutinizer-ci.com/g/zephia/pilot-api-client/badges/build.png?b=master)](https://scrutinizer-ci.com/g/zephia/pilot-api-client/build-status/master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/zephia/pilot-api-client/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/zephia/pilot-api-client/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/zephia/pilot-api-client/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/zephia/pilot-api-client/?branch=master)
 [![Latest Stable Version](https://poser.pugx.org/zephia/pilot-api-client/v/stable)](https://packagist.org/packages/zephia/pilot-api-client)
 [![Total Downloads](https://poser.pugx.org/zephia/pilot-api-client/downloads)](https://packagist.org/packages/zephia/pilot-api-client)
 [![License](https://poser.pugx.org/zephia/pilot-api-client/license)](https://packagist.org/packages/zephia/pilot-api-client)

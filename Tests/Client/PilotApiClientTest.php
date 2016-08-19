@@ -141,6 +141,6 @@ class PilotApiClientTest extends \PHPUnit_Framework_TestCase
             'app_key' => 'APP-KEY'
         ]);
 
-        $this->assertEquals(true, $client->setAppKey('NEW-APP-KEY'));
+        $this->assertTrue($client->setAppKey('NEW-APP-KEY'));
     }
 }

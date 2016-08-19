@@ -93,4 +93,17 @@ class PilotApiClient
     {
         return $this->guzzleClient;
     }
+
+    /**
+     * @return bool
+     */
+    public function setAppKey($app_key)
+    {
+        if (!empty($app_key)) {
+            $this->appKey = $app_key;
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

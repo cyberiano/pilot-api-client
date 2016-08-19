@@ -134,4 +134,13 @@ class PilotApiClientTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(1234, $response->data->assigned_user_id);
         $this->assertEquals(1, $response->data->id);
     }
+
+    public function testSetAppKeyOk()
+    {
+        $client = new PilotApiClient([
+            'app_key' => 'APP-KEY'
+        ]);
+
+        $this->assertEquals(true, $client->setAppKey('NEW-APP-KEY'));
+    }
 }

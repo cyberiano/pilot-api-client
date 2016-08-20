@@ -73,11 +73,7 @@ class PilotApiClient
             'body' => $form_params
         ]);
 
-        if ($response->getStatusCode() !== 200) {
-            throw new InvalidArgumentException(
-                $response->getBody()->getContents()
-            );
-        } else {
+        if ($response->getStatusCode() === 200) {
             $content = json_decode($response->getBody()->getContents());
             if ($content->success === false) {
                 throw new InvalidArgumentException($content->data);

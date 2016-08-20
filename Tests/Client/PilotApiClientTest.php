@@ -139,7 +139,7 @@ class PilotApiClientTest extends \PHPUnit_Framework_TestCase
             'contact_type_id' => 1,
             'business_type_id' => 1,
             'suborigin_id' => "FFFF0000",
-        ]));
+        ]), 'test@test.com');
         $this->assertTrue($response->success);
         $this->assertEquals('Success', $response->message);
         $this->assertEquals('(3.2) El servicio de carga de datos se ejecuto correctamente.', $response->data->message);

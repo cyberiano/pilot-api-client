@@ -3,12 +3,14 @@
  * Class PilotApiClient
  *
  * @author Cristian Jimenez <cristian@zephia.com.ar>
+ * @author Mauro Moreno     <moreno.mauro.emanuel@gmail.com>
  */
 
 namespace Zephia\PilotApiClient\Client;
 
 use GuzzleHttp\Client as GuzzleClient;
 use Zephia\PilotApiClient\Exception\InvalidArgumentException;
+use Zephia\PilotApiClient\Exception\LogicException;
 use Zephia\PilotApiClient\Model\LeadData;
 
 class PilotApiClient
@@ -35,7 +37,9 @@ class PilotApiClient
 
         $config = array_merge($defaults, $config);
 
-        $this->appKey = $config['app_key'];
+        if (!empty($config['app_key'])) {
+            $this->setAppKey($config['app_key']);
+        }
         $this->debug = $config['debug'];
 
         $this->guzzleClient = new GuzzleClient();
@@ -53,14 +57,10 @@ class PilotApiClient
      */
     public function storeLead(LeadData $lead_data, $notification_email = '')
     {
-        if (empty($lead_data)) {
-            throw new InvalidArgumentException("Lead Data is empty.");
-        }
-
         $form_params = [
             'debug' => $this->debug,
             'action' => 'create',
-            'appkey' => $this->appKey,
+            'appkey' => $this->getAppKey(),
         ];
 
         $form_params = array_merge($form_params, $lead_data->toArray());
@@ -95,15 +95,24 @@ class PilotApiClient
     }
 
     /**
-     * @return bool
+     * @param $app_key
+     *
+     * @return $this
      */
     public function setAppKey($app_key)
     {
-        if (!empty($app_key)) {
-            $this->appKey = $app_key;
-            return true;
-        } else {
-            return false;
+        $this->appKey = $app_key;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAppKey()
+    {
+        if (empty($this->appKey)) {
+            throw new LogicException('App Key is undefined.');
         }
+        return $this->appKey;
     }
 }

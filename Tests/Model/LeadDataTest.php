@@ -32,20 +32,52 @@ class LeadDataTest extends \PHPUnit_Framework_TestCase
         $lead_data->toArray();
     }
 
-    public function testGetters()
+    public function testSettersAndGetters()
     {
-        $lead_data = new LeadData([
-            'firstname' => 'Test',
-            'phone' => '123456',
-            'contact_type_id' => 1,
-            'business_type_id' => 1,
-            'suborigin_id' => "FFFF0000",
-        ]);
+        $lead_data = new LeadData();
 
+        $this->assertEquals($lead_data, $lead_data->setFirstname('Test'));
         $this->assertEquals('Test', $lead_data->getFirstname());
+        $this->assertEquals($lead_data, $lead_data->setLastname('Test'));
+        $this->assertEquals('Test', $lead_data->getLastname());
+        $this->assertEquals($lead_data, $lead_data->setPhone(123456));
+        $this->assertEquals(123456, $lead_data->getPhone());
+        $this->assertEquals($lead_data, $lead_data->setCellphone(123456));
+        $this->assertEquals(123456, $lead_data->getCellphone());
+        $this->assertEquals($lead_data, $lead_data->setEmail('test@test.com'));
+        $this->assertEquals('test@test.com', $lead_data->getEmail());
+        $this->assertEquals($lead_data, $lead_data->setContactTypeId(1));
         $this->assertEquals(1, $lead_data->getContactTypeId());
+        $this->assertEquals($lead_data, $lead_data->setBusinessTypeId(1));
         $this->assertEquals(1, $lead_data->getBusinessTypeId());
+        $this->assertEquals($lead_data, $lead_data->setNotes('Test'));
+        $this->assertEquals('Test', $lead_data->getNotes());
+        $this->assertEquals($lead_data, $lead_data->setOriginId(1));
+        $this->assertEquals(1, $lead_data->getOriginId());
+        $this->assertEquals($lead_data, $lead_data->setSuboriginId('FFFF0000'));
         $this->assertEquals('FFFF0000', $lead_data->getSuboriginId());
+        $this->assertEquals($lead_data, $lead_data->setAssignedUser(1234));
+        $this->assertEquals(1234, $lead_data->getAssignedUser());
+        $this->assertEquals($lead_data, $lead_data->setCarBrand('Test'));
+        $this->assertEquals('Test', $lead_data->getCarBrand());
+        $this->assertEquals($lead_data, $lead_data->setCarModelo('Test'));
+        $this->assertEquals('Test', $lead_data->getCarModelo());
+        $this->assertEquals($lead_data, $lead_data->setCity('Test'));
+        $this->assertEquals('Test', $lead_data->getCity());
+        $this->assertEquals($lead_data, $lead_data->setProvince('Test'));
+        $this->assertEquals('Test', $lead_data->getProvince());
+        $this->assertEquals($lead_data, $lead_data->setCountry('Test'));
+        $this->assertEquals('Test', $lead_data->getCountry());
+        $this->assertEquals($lead_data, $lead_data->setVendorName('Test'));
+        $this->assertEquals('Test', $lead_data->getVendorName());
+        $this->assertEquals($lead_data, $lead_data->setVendorEmail('test@test.com'));
+        $this->assertEquals('test@test.com', $lead_data->getVendorEmail());
+        $this->assertEquals($lead_data, $lead_data->setVendorPhone(123456));
+        $this->assertEquals(123456, $lead_data->getVendorPhone());
+        $this->assertEquals($lead_data, $lead_data->setProviderService('Test'));
+        $this->assertEquals('Test', $lead_data->getProviderService());
+        $this->assertEquals($lead_data, $lead_data->setProviderUrl('http://test.com'));
+        $this->assertEquals('http://test.com', $lead_data->getProviderUrl());
     }
 
     public function missingRequiredValuesByArrayDataProvider()

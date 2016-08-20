@@ -12,6 +12,7 @@ use GuzzleHttp\Stream\Stream;
 use GuzzleHttp\Subscriber\Mock;
 use Zephia\PilotApiClient\Client\PilotApiClient;
 use Zephia\PilotApiClient\Exception\InvalidArgumentException;
+use Zephia\PilotApiClient\Exception\LogicException;
 use Zephia\PilotApiClient\Model\LeadData;
 
 class PilotApiClientTest extends \PHPUnit_Framework_TestCase
@@ -23,15 +24,6 @@ class PilotApiClientTest extends \PHPUnit_Framework_TestCase
     {
         $client = new PilotApiClient();
         $this->assertInstanceOf(Client::class, $client->getGuzzleClient());
-    }
-
-    /**
-     * @expectedException InvalidArgumentException
-     */
-    public function testLeadDataIsEmpty()
-    {
-        $client = new PilotApiClient();
-        $client->storeLead(new LeadData());
     }
 
     /**
@@ -93,6 +85,26 @@ class PilotApiClientTest extends \PHPUnit_Framework_TestCase
         ]));
     }
 
+    /**
+     * @expectedException \Exception
+     */
+    public function testStoreLeadServerError()
+    {
+        $client = new PilotApiClient([
+            'debug' => true,
+            'app_key' => 'APP-KEY'
+        ]);
+        $mock = new Mock([new Response(500, [], Stream::factory('Internal Server Error'))]);
+        $client->getGuzzleClient()->getEmitter()->attach($mock);
+        $client->storeLead(new LeadData([
+            'firstname' => 'Test',
+            'phone' => '123456',
+            'contact_type_id' => 1,
+            'business_type_id' => 1,
+            'suborigin_id' => "FFFF0000",
+        ]));
+    }
+
     public function testStoreLeadDebugOk()
     {
         $client = new PilotApiClient([
@@ -135,12 +147,22 @@ class PilotApiClientTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(1, $response->data->id);
     }
 
+    /**
+     * @expectedException LogicException
+     */
+    public function testSetAppKeyEmpty()
+    {
+        $client = new PilotApiClient();
+        $client->getAppKey();
+    }
+
     public function testSetAppKeyOk()
     {
         $client = new PilotApiClient([
             'app_key' => 'APP-KEY'
         ]);
 
-        $this->assertTrue($client->setAppKey('NEW-APP-KEY'));
+        $this->assertEquals($client, $client->setAppKey('NEW-APP-KEY'));
+        $this->assertEquals('NEW-APP-KEY', $client->getAppKey());
     }
 }

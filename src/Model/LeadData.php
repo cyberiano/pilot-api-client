@@ -85,29 +85,82 @@ class LeadData
     {
         $required = '';
 
-        if (empty($this->getFirstname()) && empty($this->getLastname())) {
-            $required = "firstname or lastname";
-        }
-        if (empty($this->getPhone())
-            && empty($this->getCellphone())
-            && empty($this->getEmail())
-            && empty($required)) {
-            $required = "phone, cellphone or email";
-        }
-        if (empty($this->getContactTypeId()) && empty($required)) {
-            $required = "contact_type_id";
-        }
-        if (empty($this->getBusinessTypeId()) && empty($required)) {
-            $required = "business_type_id";
-        }
-        if (empty($this->getSuboriginId()) && empty($required)) {
-            $required = "suborigin_id";
+        $validations = [
+            'firstname|lastname',
+            'phone|cellphone|email',
+            'contact_type_id',
+            'business_type_id',
+            'suborigin_id',
+        ];
+
+        for ($i = 0; $i < count($validations) && empty($required); $i ++) {
+            switch ($validations[$i]) {
+                case "firstname|lastname":
+                    $required = $this->validateFirstnameOrLastname();
+                    break;
+                case "phone|cellphone|email":
+                    $required = $this->validatePhoneCellphoneOrEmail();
+                    break;
+                case "contact_type_id":
+                    $required = $this->validateContactTypeId();
+                    break;
+                case "business_type_id":
+                    $required = $this->validateBusinessTypeId();
+                    break;
+                case "suborigin_id":
+                    $required = $this->validateSuboriginId();
+                    break;
+            }
         }
 
         if (!empty($required)) {
             throw new InvalidArgumentException(
                 sprintf('Missing required value: %s.', $required)
             );
+        }
+    }
+
+    // Validations
+    /**
+     * @return string
+     */
+    public function validateFirstnameOrLastname()
+    {
+        if (empty($this->getFirstname()) && empty($this->getLastname())) {
+            return "firstname or lastname";
+        }
+    }
+
+    /**
+     * @return string
+     */
+    public function validatePhoneCellphoneOrEmail()
+    {
+        if (empty($this->getPhone())
+            && empty($this->getCellphone())
+            && empty($this->getEmail())) {
+            return "phone, cellphone or email";
+        }
+    }
+
+    public function validateContactTypeId()
+    {
+        if (empty($this->getContactTypeId())) {
+            return "contact_type_id";
+        }
+    }
+
+    public function validateBusinessTypeId()
+    {
+        if (empty($this->getBusinessTypeId())) {
+            return "business_type_id";
+        }
+    }
+
+    public function validateSuboriginId()
+    {
+        if (empty($this->getSuboriginId())) {
+            return "suborigin_id";
         }
     }
 

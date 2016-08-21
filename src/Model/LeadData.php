@@ -86,31 +86,15 @@ class LeadData
         $required = '';
 
         $validations = [
-            'firstname|lastname',
-            'phone|cellphone|email',
-            'contact_type_id',
-            'business_type_id',
-            'suborigin_id',
+            'FirstnameOrLastname',
+            'PhoneCellphoneOrEmail',
+            'ContactTypeId',
+            'BusinessTypeId',
+            'SuboriginId',
         ];
 
         for ($i = 0; $i < count($validations) && empty($required); $i ++) {
-            switch ($validations[$i]) {
-                case "firstname|lastname":
-                    $required = $this->validateFirstnameOrLastname();
-                    break;
-                case "phone|cellphone|email":
-                    $required = $this->validatePhoneCellphoneOrEmail();
-                    break;
-                case "contact_type_id":
-                    $required = $this->validateContactTypeId();
-                    break;
-                case "business_type_id":
-                    $required = $this->validateBusinessTypeId();
-                    break;
-                case "suborigin_id":
-                    $required = $this->validateSuboriginId();
-                    break;
-            }
+            $required = $this->{"validate" . $validations[$i]}();
         }
 
         if (!empty($required)) {

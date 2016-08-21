@@ -93,7 +93,7 @@ class LeadData
             'SuboriginId',
         ];
 
-        for ($i = 0; $i < count($validations) && empty($required); $i ++) {
+        for ($i = 0; $i < count($validations) && empty($required); $i++) {
             $required = $this->{"validate" . $validations[$i]}();
         }
 
